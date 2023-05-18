@@ -1,0 +1,20 @@
+server:
+  port: 8763
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: dummy-admin
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        catalog-services-watch-delay: 5000
+        catalog-services-watch-timeout: 10
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: false # disable swagger-ui, enable it by -Dspringdoc.swagger-ui.enabled=true

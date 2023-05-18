@@ -1,0 +1,32 @@
+server:
+  port: 8762
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /
+
+
+spring:
+
+  application:
+    name: dummy-common
+
+  config:
+    import: 'optional:consul:' #This will connect to the Consul Agent at the default location of "http://localhost:8500"
+
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        health-check-path: /health # replace the default /actuator/health
+        catalog-services-watch-delay: 5000
+        catalog-services-watch-timeout: 10
+        #instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        #instance-id: ${spring.application.name}
+        instance-id: ${spring.application.name}:${random.value}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: false # disable swagger-ui, enable it by -Dspringdoc.swagger-ui.enabled=true
